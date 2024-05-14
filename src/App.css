@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+.fixed-nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures nav bar stays on top */
+  background-color: #fff; /* Optional background color */
+  /* Add more styling as needed */
+}
+

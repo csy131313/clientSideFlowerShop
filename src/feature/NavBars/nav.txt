@@ -1,0 +1,128 @@
+import { Link } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import UpdateFrom from "../products/UpdateFrom.js"
+import Basket from "../Orders/Basket";
+import { useState } from "react";
+import SmallBasket from "../Orders/SmallBasket.js";
+
+
+import OrderFrom from "../Orders/OrderForm";
+import AddProductFrom from "../products/AddProductFrom";
+import ProductDetails from "../products/ProductDetails";
+import ProductList from "../products/ProductList";
+import Login from "../Users/Login";
+import LogOut from "../Users/LogOut";
+import SignIn from "../Users/SignIn";
+import { userOut } from "../Users/UserSlice.js"
+import OrderList from "../Orders/OrderList";
+import ListProduct100 from "../products/lists/ListProduct100"
+
+import ListProduct200 from "../products/lists/ListProduct200"
+import ListProduct300 from "../products/lists/ListProduct300"
+import ListProduct400 from "../products/lists/ListProduct400"
+import ListProduct500 from "../products/lists/ListProduct500"
+import ListProduct600 from "../products/lists/ListProduct600"
+import ListProduct700 from "../products/lists/ListProduct700"
+import ListProduct800 from "../products/lists/ListProduct800"
+import ListProduct900 from "../products/lists/ListProduct900"
+
+
+const UserNavBar = () => {
+  let user = useSelector((state) => state.user.currentUser);
+  let role;
+  if (user)
+    role = user.role;
+  else
+    role = "anonimi";
+  if (user)
+    alert(user.role + "אתה");
+  let dispatch = useDispatch();
+  const [showListLinks, setShowListLinks] = useState(false);
+
+  const handleMouseEnter = () => {
+    setShowListLinks(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setShowListLinks(false);
+    }, 3000); // Hide after 3 seconds
+  };
+  return (
+    <>
+      <div style={{ position: "fixed", top: 0, height: "32vh", width: "100%", zIndex: 1000, backgroundColor: "#bbb" }} >
+        {user && <h1>שלום ל+{user.userName}+{user.role} </h1>}
+
+        {!user && <h1>ללא משתמש  </h1>}
+
+        <img src="/logo.png" style={{ width: "20%" }}></img>
+
+        <div>
+          {role == "admin" && <Link to={"/addProduct"} >להוספת מוצר </Link>}
+          {role == "admin" && <Link to={"/OrderList"} >לכל ההזמנות  </Link>}
+          {/* <Link to={"/list"} >למוצרים </Link> */}
+          {user && <Link to={"/basket"} >לסל </Link>}
+          {user && <Link to={"/SmallBasket"} > לסל מוקטן </Link>}
+
+          {!user && <Link to={"/login"} >login </Link>}
+
+          {!user && <Link to={"/signIn"} >הרשמה </Link>}
+          <div>
+            <Link to={"/list"} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              To products
+            </Link>
+            <div style={{   background: "rgba(255, 200, 220, 0.5)"}}>
+              {showListLinks && (
+                <>
+                 <Link to={"/list100"}>חישוק חי</Link> {' '}
+          <Link to={"/list200"}>עגול חי</Link> {' '}
+          <Link to={"/list300"}>סחלבים נשפך</Link> {' '}
+          <Link to={"/list400"}>טוליפים נשפך</Link> {' '}
+          <Link to={"/list500"}>נשפך קאלות</Link> {' '}
+          <Link to={"/list600"}>מדורג חי</Link> {' '}
+          <Link to={"/list700"}>סחלבים מלאכותי</Link> {' '}
+          <Link to={"/list800"}>חישוק מלאכותי</Link> {' '}
+          <Link to={"/list900"}>עגול מלאכותי</Link> {' '}
+                </>
+              )}
+            </div>
+          </div>
+         
+        </div>
+      </div>
+      <Routes>
+       
+        <Route path='/UpdateFrom/:id' element={<UpdateFrom />} />
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/order' element={<OrderFrom />} />
+        <Route path='/basket' element={<Basket />} />
+        <Route path='/SmallBasket' element={<SmallBasket />} />
+
+        
+        <Route path="/list" element={<ProductList />}><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list100' element={<ListProduct100 />}><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list200' element={<ListProduct200 />}><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list300' element={<ListProduct300 />} ><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list400' element={<ListProduct400 />} ><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list500' element={<ListProduct500 />} ><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list600' element={<ListProduct600 />} ><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list700' element={<ListProduct700 />} ><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list800' element={<ListProduct800 />} ><Route path=":id" element={<ProductDetails />} /></Route>
+        <Route path='/list900' element={<ListProduct900 />} ><Route path=":id" element={<ProductDetails />} /></Route>
+
+        <Route path='/OrderList' element={<OrderList />} />
+
+        <Route path='/signIn' element={<SignIn />} />
+
+        <Route path='/addProduct' element={<AddProductFrom />} />
+
+      </Routes>
+      {user && <input type={"button"} value={"log out"} onClick={() => { dispatch(userOut()) }} />}
+
+    </>
+  );
+}
+
+export default UserNavBar;
