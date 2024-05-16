@@ -315,7 +315,7 @@ const UserNavBar = () => {
             onMouseEnter={handleMouseEnter}
           // onMouseLeave={handleMouseLeave}
           >
-            <ListItemText primary="Products" />
+            <ListItemText primary="מוצרים" />
           </ListItem>
           <ListItem button
             sx={{
@@ -324,7 +324,7 @@ const UserNavBar = () => {
               justifyContent: 'center',
               width: '50%', // Adjust the width as needed
             }} component={Link} to="/">
-            <ListItemText primary="Home" />
+            <ListItemText primary="בית" />
           </ListItem>
           {/* <ListItem button
             sx={{
@@ -345,7 +345,7 @@ const UserNavBar = () => {
               }}>
 
 
-              <ListItemText primary="Logout" onClick={() => dispatch(userOut())} />
+              <ListItemText primary="יציאה" onClick={() => dispatch(userOut())} />
             </ListItem>
 
       
@@ -360,7 +360,7 @@ const UserNavBar = () => {
                 justifyContent: 'center',
                 width: '50%', // Adjust the width as needed
               }} component={Link} to="/basket">
-              <ListItemText primary="basket" />
+              <ListItemText primary="סל קניות" />
             </ListItem>
 
 
@@ -373,7 +373,7 @@ const UserNavBar = () => {
                   justifyContent: 'center',
                   width: '50%', // Adjust the width as needed
                 }} component={Link} to="/login">
-                <ListItemText primary="Login" />
+                <ListItemText primary="הרשמה" />
               </ListItem>
               <ListItem button
                 sx={{
@@ -382,7 +382,7 @@ const UserNavBar = () => {
                   justifyContent: 'center',
                   width: '50%', // Adjust the width as needed
                 }} component={Link} to="/signIn">
-                <ListItemText primary="Register" />
+                <ListItemText primary="התחברות" />
               </ListItem>
             </>
           )}
@@ -393,7 +393,7 @@ const UserNavBar = () => {
               justifyContent: 'center',
               width: '50%', // Adjust the width as needed
             }} component={Link} to="/addProduct">
-            <ListItemText primary="adding" />
+            <ListItemText primary="הןספת מוצר" />
           </ListItem>
           }
           {role == "admin" && <ListItem button
@@ -403,7 +403,7 @@ const UserNavBar = () => {
               justifyContent: 'center',
               width: '50%', // Adjust the width as needed
             }} component={Link} to="/OrderList">
-            <ListItemText primary="orders" />
+            <ListItemText primary="הזמנות" />
           </ListItem>
           }
           {user && <ListItem button
@@ -413,7 +413,7 @@ const UserNavBar = () => {
               justifyContent: 'center',
               width: '50%', // Adjust the width as needed
             }} component={Link} to="/basket">
-            <ListItemText primary="basket" />
+            <ListItemText primary="סל קניות" />
           </ListItem>}
 
 
