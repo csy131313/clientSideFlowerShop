@@ -360,7 +360,7 @@ const UserNavBar = () => {
                 justifyContent: 'center',
                 width: '50%', // Adjust the width as needed
               }} component={Link} to="/basket">
-              <ListItemText primary="סל קניות" />
+              <ListItemText primary="סל" />
             </ListItem>
 
 
